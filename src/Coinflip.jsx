@@ -1,9 +1,11 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
+import Aftercoinflip from './Aftercoinflip'
  
 const Coinflip = ({justdo, setJustdo}) => {
 
   const [advice, setAdvice] = useState('')
+  const [anything, setAnything] = useState(false)
   
   let url = "https://ih0.redbubble.net/image.3663660817.8451/raf,360x360,075,t,fafafa:ca443f4786.jpg"
 
@@ -11,7 +13,9 @@ const Coinflip = ({justdo, setJustdo}) => {
     setJustdo(false)
   }
 
-
+  const handleAnythingElse = () => {
+    setAnything(true)
+  }
 
   useEffect(() => {
     const getAdvice = async () => {
@@ -37,16 +41,26 @@ const Coinflip = ({justdo, setJustdo}) => {
     <div className='container'>
 
         {justdo && <div id="imgdiv">
-          <img  src={url} alt="" srcset="" />
-          <h3 onClick={handleClick} style={{ cursor:'pointer'}}>click here for optional advice</h3>
+          <img  src={url} alt="" srcset="" style={{maxWidth: '100%'}}/>
+          <h2 onClick={handleClick} style={{ cursor:'pointer'}}>click here for optional advice</h2>
         </div>}
 
         {!justdo && 
           <div>
-              
-              <h1> 
+              { !anything &&
+              <>
+              <h1 style={{maxWidth: '100%'}}> 
                  {advice}
               </h1>
+
+              <h4 onClick={handleAnythingElse} style={{position: 'relative', left: '50%',transform: 'translateX(-50%)', cursor: 'pointer'}}>
+                still need help?</h4>
+                </>
+              }
+
+              {
+                anything && <Aftercoinflip/>
+              }
           </div>
         }
         

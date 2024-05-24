@@ -60,8 +60,7 @@ const Aftercoinflip = () => {
                 style={{width: '300px', height: '30px', padding: '0 5px'}} type="text" name="" id="" />
                 
 
-                { showAddMsg && <h5>added {problems.length} decision(s)
-                    </h5>}
+                { showAddMsg && <h5>added {problems.length}  </h5>}
                  <h5 style={{color: 'red'}}>{showError}</h5>
                 
                 <div>
